@@ -9,6 +9,29 @@
 <div class="d-flex justify-content-between mb-3">
 
     <h2>دفتر تلفن</h2>
+    <form method="get" class="mb-3">
+
+    <div class="input-group">
+
+        <input
+            type="text"
+            name="q"
+            class="form-control"
+            placeholder="جستجو بر اساس نام یا شماره همراه"
+            value="{{ request.GET.q }}"
+        >
+
+        <button
+            type="submit"
+            class="btn btn-primary">
+
+            جستجو
+
+        </button>
+
+    </div>
+
+</form>
 
     <a href="/create/"
        class="btn btn-primary">
