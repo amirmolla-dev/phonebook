@@ -28,3 +28,20 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.full_name
+    
+    
+class ContactImage(models.Model):
+    
+    contact = models.OneToOneField(
+        Contact,
+        on_delete=models.CASCADE,
+        related_name="image"
+    )
+    
+    image_data = models.BinaryField(
+        null=True,
+        blank=True
+    )
+    
+    def __str__(self):
+        return f"Image of {self.contact.full_name}"
