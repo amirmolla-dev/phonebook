@@ -20,11 +20,15 @@
 
         {% for contact in contacts %}
 
-        <li>
-            {{ contact.full_name }}
-            -
-            {{ contact.mobile }}
-        </li>
+    <li>
+        {{ contact.full_name }}
+        -
+        {{ contact.mobile }}
+
+        <a href="{% url 'contact-edit' contact.id %}">
+        ویرایش
+        </a>
+    </li>
 
         {% empty %}
 
@@ -39,3 +43,4 @@
 </body>
 
 </html>
+
