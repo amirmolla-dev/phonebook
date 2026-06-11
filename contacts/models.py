@@ -1,4 +1,5 @@
 from django.db import models
+from .validators import validate_mobile
 
 class Contact(models.Model):
     full_name = models.CharField(
@@ -9,6 +10,7 @@ class Contact(models.Model):
     mobile = models.CharField(
         max_length=11,
         unique=True,
+        validators=[validate_mobile],
         verbose_name="تلفن همراه"
     )
     
