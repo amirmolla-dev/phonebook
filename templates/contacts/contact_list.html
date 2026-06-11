@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>دفتر تلفن</title>
+</head>
+
+<body>
+
+    <h1>دفتر تلفن</h1>
+
+    <a href="{% url 'contact-create' %}">
+        افزودن مخاطب جدید
+    </a>
+
+    <hr>
+
+    <ul>
+
+        {% for contact in contacts %}
+
+        <li>
+            {{ contact.full_name }}
+            -
+            {{ contact.mobile }}
+        </li>
+
+        {% empty %}
+
+        <li>
+            هیچ مخاطبی ثبت نشده است.
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+</body>
+
+</html>
