@@ -1,49 +1,86 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>دفتر تلفن</title>
-</head>
+{% block title %}
+دفتر تلفن
+{% endblock %}
 
-<body>
+{% block content %}
 
-    <h1>دفتر تلفن</h1>
+<div class="d-flex justify-content-between mb-3">
 
-    <a href="{% url 'contact-create' %}">
-        افزودن مخاطب جدید
+    <h2>دفتر تلفن</h2>
+
+    <a href="/create/"
+       class="btn btn-primary">
+
+        افزودن مخاطب
+
     </a>
 
-    <hr>
+</div>
 
-    <ul>
+<table class="table table-bordered table-hover">
 
-        {% for contact in contacts %}
+    <thead>
 
-    <li>
-        {{ contact.full_name }}
-        -
-        {{ contact.mobile }}
+    <tr>
 
-        <a href="{% url 'contact-edit' contact.id %}">
-        ویرایش
-        </a>
-        <a href="/delete/{{ contact.id }}/">
-            حذف
-        </a>    
-    </li>
+        <th>نام</th>
 
-        {% empty %}
+        <th>شماره همراه</th>
 
-        <li>
+        <th>عملیات</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for contact in contacts %}
+
+    <tr>
+
+        <td>{{ contact.full_name }}</td>
+
+        <td>{{ contact.mobile }}</td>
+
+        <td>
+
+            <a href="/edit/{{ contact.id }}/"
+               class="btn btn-warning btn-sm">
+
+                ویرایش
+
+            </a>
+
+            <a href="/delete/{{ contact.id }}/"
+               class="btn btn-danger btn-sm">
+
+                حذف
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% empty %}
+
+    <tr>
+
+        <td colspan="3">
+
             هیچ مخاطبی ثبت نشده است.
-        </li>
 
-        {% endfor %}
+        </td>
 
-    </ul>
+    </tr>
 
-</body>
+    {% endfor %}
 
-</html>
+    </tbody>
 
+</table>
+
+{% endblock %}

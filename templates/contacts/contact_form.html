@@ -1,33 +1,32 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>ثبت مخاطب</title>
-</head>
+{% block content %}
 
-<body>
+<h2 class="mb-4">
 
-    <h1>افزودن مخاطب</h1>
+    ثبت / ویرایش مخاطب
 
-    <form method="post">
+</h2>
 
-        {% csrf_token %}
+<form method="post">
 
-        {{ form.as_p }}
+    {% csrf_token %}
 
-        <button type="submit">
-            ذخیره
-        </button>
+    {{ form.as_p }}
 
-    </form>
+    <button class="btn btn-success">
 
-    <br>
+        ذخیره
 
-    <a href="{% url 'contact-list' %}">
-        بازگشت به لیست
+    </button>
+
+    <a href="/"
+       class="btn btn-secondary">
+
+        بازگشت
+
     </a>
 
-</body>
+</form>
 
-</html>
+{% endblock %}

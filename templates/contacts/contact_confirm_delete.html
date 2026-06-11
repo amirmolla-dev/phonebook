@@ -1,33 +1,52 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>حذف مخاطب</title>
-</head>
+{% block content %}
 
-<body>
+<div class="card">
 
-    <h2>آیا از حذف این مخاطب مطمئن هستید؟</h2>
+    <div class="card-body">
 
-    <p>
-        {{ object.full_name }}
-    </p>
+        <h3>
 
-    <form method="post">
-        {% csrf_token %}
+            حذف مخاطب
 
-        <button type="submit">
-            حذف
-        </button>
-    </form>
+        </h3>
 
-    <br>
+        <p>
 
-    <a href="{% url 'contact-list' %}">
-        انصراف
-    </a>
+            آیا از حذف
 
-</body>
+            <strong>
 
-</html>
+                {{ object.full_name }}
+
+            </strong>
+
+            مطمئن هستید؟
+
+        </p>
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <button class="btn btn-danger">
+
+                حذف
+
+            </button>
+
+            <a href="/"
+               class="btn btn-secondary">
+
+                انصراف
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
