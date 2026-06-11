@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>حذف مخاطب</title>
+</head>
+
+<body>
+
+    <h2>آیا از حذف این مخاطب مطمئن هستید؟</h2>
+
+    <p>
+        {{ object.full_name }}
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button type="submit">
+            حذف
+        </button>
+    </form>
+
+    <br>
+
+    <a href="{% url 'contact-list' %}">
+        انصراف
+    </a>
+
+</body>
+
+</html>

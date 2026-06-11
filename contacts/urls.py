@@ -4,6 +4,7 @@ from .views import (
     ContactListView,
     ContactCreateView,
     ContactUpdateView,
+    ContactDeleteView,
 )
 
 urlpatterns = [
@@ -23,5 +24,11 @@ urlpatterns = [
         "edit/<int:pk>/",
         ContactUpdateView.as_view(),
         name="contact-edit"
+    ),
+    
+    path(
+        "delete/<int:pk>/",
+        ContactDeleteView.as_view(),
+        name="contact-delete"
     ),
 ]

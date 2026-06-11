@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
-from .models import Contact
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
+from .models import Contact
 from django.urls import reverse_lazy
 from .forms import ContactForm
 
@@ -24,3 +29,10 @@ class ContactUpdateView(UpdateView):
     form_class = ContactForm
     template_name = "contacts/contact_form.html"
     success_url = reverse_lazy("contact-list")
+    
+class ContactDeleteView(DeleteView):
+    
+    model = Contact
+    template_name = "contacts/contact_confirm_delete.html"
+    success_url = reverse_lazy("contact-list")
+     

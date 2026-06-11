@@ -28,6 +28,9 @@
         <a href="{% url 'contact-edit' contact.id %}">
         ویرایش
         </a>
+        <a href="/delete/{{ contact.id }}/">
+            حذف
+        </a>    
     </li>
 
         {% empty %}
