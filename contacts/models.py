@@ -1,5 +1,6 @@
 from django.db import models
 from .validators import validate_mobile
+import jdatetime
 
 class Contact(models.Model):
     full_name = models.CharField(
@@ -21,7 +22,7 @@ class Contact(models.Model):
     )
     
     created_at = models.DateTimeField(
-        auto_now=True
+        auto_now_add=True
     )
     
     updated_at = models.DateTimeField(
@@ -30,6 +31,16 @@ class Contact(models.Model):
     
     def __str__(self):
         return self.full_name
+    
+    @property
+    def jalali_birth_date(self):
+        
+        if not self.birth_date:
+            return ""
+
+        return jdatetime.date.fromgregorian(
+            date=self.birth_date
+        ).strftime("%Y/%m/%d")
     
     
 class ContactImage(models.Model):
@@ -47,3 +58,6 @@ class ContactImage(models.Model):
     
     def __str__(self):
         return f"Image of {self.contact.full_name}"
+    
+    
+    
