@@ -19,15 +19,34 @@ class ContactListView(ListView):
     
     def get_queryset(self):
         
-        query = self.request.GET.get("q")
+        queryset = Contact.objects.all()
+        
+        query      = self.request.GET.get("q")
+        start_date = self.request.GET.get("start_date")
+        end_date   = self.request.GET.get("end_date")
+        
         if query:
             
-            return Contact.objects.filter(
+            queryset = queryset.filter(
                 Q(full_name__icontains=query)
                 |
                 Q(mobile__icontains=query)
+                
             )
-        return Contact.objects.order_by("full_name")
+            
+        if start_date:
+            queryset = queryset.filter(
+                birth_date__gte=start_date
+            )
+        
+        if end_date:
+            queryset = queryset.filter(
+                birth_date__lte=end_date
+            )
+        
+        return queryset.order_by("full_name")
+            
+            
 
 class ContactCreateView(CreateView):
     
