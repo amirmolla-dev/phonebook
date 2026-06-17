@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact
+from .models import Contact, ContactImage
 from datetime import date
 
 class ContactForm(forms.ModelForm):
