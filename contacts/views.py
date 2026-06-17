@@ -10,6 +10,7 @@ from .models import Contact, ContactImage
 from django.urls import reverse_lazy
 from .forms import ContactForm
 from django.db.models import Q
+from django.http import HttpResponse
 
 class ContactListView(ListView):
     
@@ -98,3 +99,16 @@ class ContactDeleteView(DeleteView):
     success_url = reverse_lazy("contact-list")
      
      
+def contact_image_view(request, pk):
+    
+    try:
+        image = ContactImage.objects.get(
+            contact_id=pk
+        )
+        
+        return HttpResponse(
+            image.image_data,
+            content_type="image/jpeg"
+        )
+    except ContactImage.DoesNotExist:
+        return HttpResponse(status=404)

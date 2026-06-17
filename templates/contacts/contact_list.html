@@ -86,6 +86,8 @@
 
     <tr>
 
+        <th>تصویر</th>
+
         <th>نام</th>
 
         <th>شماره همراه</th>
@@ -103,6 +105,22 @@
     {% for contact in contacts %}
 
     <tr>
+
+        <td> 
+            
+            {% if contact.image %}
+
+            <img 
+
+                src="{% url 'contact-image' contact.id %}"
+                width="60"
+                height="60"
+                class="rounded"
+            >
+
+            {% endif %}
+
+        </td>
 
         <td>{{ contact.full_name }}</td>
 

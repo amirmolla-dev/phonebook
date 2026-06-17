@@ -5,6 +5,7 @@ from .views import (
     ContactCreateView,
     ContactUpdateView,
     ContactDeleteView,
+    contact_image_view,
 )
 
 urlpatterns = [
@@ -30,5 +31,11 @@ urlpatterns = [
         "delete/<int:pk>/",
         ContactDeleteView.as_view(),
         name="contact-delete"
+    ),
+    
+    path(
+        "image/<int:pk>/",
+        contact_image_view,
+        name="contact-image"
     ),
 ]
