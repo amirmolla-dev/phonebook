@@ -6,70 +6,10 @@
 
 {% block content %}
 
+
 <div class="d-flex justify-content-between align-items-center mb-4">
 
-    {% comment %} <h2>دفتر تلفن</h2>
-
-    <a href="/create/"
-       class="btn btn-primary">
-
-        افزودن مخاطب
-
-    </a>
-
-</div> {% endcomment %}
-
-<form method="get" class="row g-3 mb-4">
-
-    <div class="col-md-4">
-
-        <input
-            type="text"
-            name="q"
-            class="form-control"
-            placeholder="نام یا شماره همراه"
-            value="{{ request.GET.q }}"
-        >
-
-    </div>
-
-    <div class="col-md-3">
-
-        <input
-            type="date"
-            name="start_date"
-            class="form-control"
-            value="{{ request.GET.start_date }}"
-        >
-
-    </div>
-
-    <div class="col-md-3">
-
-        <input
-            type="date"
-            name="end_date"
-            class="form-control"
-            value="{{ request.GET.end_date }}"
-        >
-
-    </div>
-
-    <div class="col-md-2">
-
-        <button
-            type="submit"
-            class="btn btn-primary w-100">
-
-            جستجو
-
-        </button>
-
-    </div>
-
-</form>
-
-</form>
+    <h2>دفتر تلفن</h2>
 
     <a href="{% url 'contact-create' %}"
        class="btn btn-primary">
@@ -79,6 +19,83 @@
     </a>
 
 </div>
+
+<div class="card mb-4">
+
+    <div class="card-header">
+
+        فیلتر و جستجوی مخاطبین
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="get" class="row g-3">
+
+            <div class="col-md-4">
+
+                <label class="form-label">
+                    نام یا شماره همراه
+                </label>
+
+                <input
+                    type="text"
+                    name="q"
+                    class="form-control"
+                    placeholder="وارد کنید..."
+                    value="{{ request.GET.q }}"
+                >
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    از تاریخ تولد
+                </label>
+
+                <input
+                    type="date"
+                    name="start_date"
+                    class="form-control"
+                    value="{{ request.GET.start_date }}"
+                >
+
+            </div>
+
+            <div class="col-md-3">
+
+                <label class="form-label">
+                    تا تاریخ تولد
+                </label>
+
+                <input
+                    type="date"
+                    name="end_date"
+                    class="form-control"
+                    value="{{ request.GET.end_date }}"
+                >
+
+            </div>
+
+            <div class="col-md-2 d-flex align-items-end">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary w-100">
+
+                    جستجو
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
 
 <table class="table table-bordered table-hover">
 
@@ -126,16 +143,18 @@
 
         <td>{{ contact.mobile }}</td>
 
-        <td>{{ contact.jalali_birth_date }}
+        <td>{{ contact.jalali_birth_date }}</td>
 
         <td>
-
-            <a href="{% url 'contact-edit' contact.id %}/"
+            <a href="{% url 'contact-edit' contact.id %}"
                class="btn btn-warning btn-sm">
 
                 ویرایش
 
             </a>
+        
+
+        
 
             <a href="{% url 'contact-delete' contact.id %}"
                class="btn btn-danger btn-sm">
