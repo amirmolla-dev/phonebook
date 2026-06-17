@@ -71,7 +71,7 @@
 
 </form>
 
-    <a href="/create/"
+    <a href="{% url 'contact-create' %}"
        class="btn btn-primary">
 
         افزودن مخاطب
@@ -130,14 +130,14 @@
 
         <td>
 
-            <a href="/edit/{{ contact.id }}/"
+            <a href="{% url 'contact-edit' contact.id %}/"
                class="btn btn-warning btn-sm">
 
                 ویرایش
 
             </a>
 
-            <a href="/delete/{{ contact.id }}/"
+            <a href="{% url 'contact-delete' contact.id %}"
                class="btn btn-danger btn-sm">
 
                 حذف
