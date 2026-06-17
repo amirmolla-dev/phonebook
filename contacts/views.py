@@ -6,7 +6,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-from .models import Contact
+from .models import Contact, ContactImage
 from django.urls import reverse_lazy
 from .forms import ContactForm
 from django.db.models import Q
@@ -55,12 +55,41 @@ class ContactCreateView(CreateView):
     template_name = 'contacts/contact_form.html'
     success_url = reverse_lazy("contact-list")
     
+    def form_valid(self, form):
+        
+        response = super().form_valid(form)
+        image_file = form.cleaned_data.get("image")
+        
+        if image_file:
+            ContactImage.objects.create(
+                contact=self.object,
+                image_data=image_file.read()
+            )
+        
+        return response
+    
 class ContactUpdateView(UpdateView):
     
     model = Contact
     form_class = ContactForm
     template_name = "contacts/contact_form.html"
     success_url = reverse_lazy("contact-list")
+    
+    def form_valid(self, form):
+        
+        response = super().form_valid(form)
+        image_file = form.cleaned_data.get("image")
+        
+        if image_file:
+            
+            image_obj, created = ContactImage.objects.get_or_create(
+                contact=self.object
+            )
+            
+            image_obj.image_data = image_file.read()
+            image_obj.save()
+            
+        return response
     
 class ContactDeleteView(DeleteView):
     
