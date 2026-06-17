@@ -11,6 +11,7 @@ from django.urls import reverse_lazy
 from .forms import ContactForm
 from django.db.models import Q
 from django.http import HttpResponse
+from django.contrib import messages
 
 class ContactListView(ListView):
     
@@ -66,6 +67,11 @@ class ContactCreateView(CreateView):
                 contact=self.object,
                 image_data=image_file.read()
             )
+            
+        messages.success(
+            self.request,
+            "مخاطب با موفقیت ثبت شد"
+        )
         
         return response
     
@@ -90,6 +96,11 @@ class ContactUpdateView(UpdateView):
             image_obj.image_data = image_file.read()
             image_obj.save()
             
+        messages.success(
+            self.request,
+            "اطلاعات مخاطب با موفقیت بروزرسانی شد"
+        )
+            
         return response
     
 class ContactDeleteView(DeleteView):
@@ -97,6 +108,15 @@ class ContactDeleteView(DeleteView):
     model = Contact
     template_name = "contacts/contact_confirm_delete.html"
     success_url = reverse_lazy("contact-list")
+    
+    def form_valid(self, form):
+        
+        messages.success(
+            self.request,
+            "مخاطب با موفقیت حذف شد"
+        )
+        return super().form_valid(form)
+    
      
      
 def contact_image_view(request, pk):
