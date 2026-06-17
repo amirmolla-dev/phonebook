@@ -8,7 +8,7 @@ from django.views.generic import (
 
 from .models import Contact, ContactImage
 from django.urls import reverse_lazy
-from .forms import ContactForm
+from .forms import ContactForm, SearchForm
 from django.db.models import Q
 from django.http import HttpResponse
 from django.contrib import messages
@@ -23,30 +23,53 @@ class ContactListView(ListView):
         
         queryset = Contact.objects.all()
         
-        query      = self.request.GET.get("q")
-        start_date = self.request.GET.get("start_date")
-        end_date   = self.request.GET.get("end_date")
+        form = SearchForm(
+            self.request.GET
+        )
         
-        if query:
+        if form.is_valid():
+        
+            query = form.cleaned_data.get("q")
             
-            queryset = queryset.filter(
-                Q(full_name__icontains=query)
-                |
-                Q(mobile__icontains=query)
-                
+            start_date = form.cleaned_data.get(
+            "start_date"
             )
+        
+            end_date = form.cleaned_data.get(
+                "end_date"
+            )
+        
+            if query:
             
-        if start_date:
-            queryset = queryset.filter(
+                queryset = queryset.filter(
+                    Q(full_name__icontains=query)
+                    |
+                    Q(mobile__icontains=query)
+                )
+            
+            if start_date:
+                queryset = queryset.filter(
                 birth_date__gte=start_date
-            )
+                )
         
-        if end_date:
-            queryset = queryset.filter(
+            if end_date:
+                queryset = queryset.filter(
                 birth_date__lte=end_date
-            )
+                )
         
         return queryset.order_by("full_name")
+    
+    def get_context_data(self, **kwargs):
+        
+        context = super().get_context_data(
+            **kwargs
+        )
+        
+        context["search_form"] = SearchForm(
+            self.request.GET
+        )
+        
+        return context
             
             
 

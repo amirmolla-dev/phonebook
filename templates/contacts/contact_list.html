@@ -77,7 +77,17 @@
                 >
 
             </div>
+            
+            {% if search_form.non_field_errors %}
 
+            <div class="alert alert-danger">
+
+                {{ search_form.non_field_errors }}
+
+            </div>
+
+            {% endif %}
+            
             <div class="col-md-2 d-flex align-items-end">
 
                 <button

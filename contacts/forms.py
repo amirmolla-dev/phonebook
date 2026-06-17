@@ -41,3 +41,33 @@ class ContactForm(forms.ModelForm):
             )
             
         return full_name
+    
+    
+class SearchForm(forms.Form):
+    
+    q = forms.CharField(
+        required=False
+    )
+    
+    start_date = forms.DateField(
+        required=False
+    )
+    
+    end_date = forms.DateField(
+        required=False
+    )
+    
+    def clean(self):
+        
+        cleaned_data = super().clean()
+        
+        start_date = cleaned_data.get("start_date")
+        end_date   = cleaned_data.get("end_date")
+        
+        if ( start_date and end_date and start_date > end_date):
+            
+            raise forms.ValidationError(
+                "نمیشه که تاریخ شروع بعد از تاریخ پایان باشه !"
+            )
+            
+        return cleaned_data
