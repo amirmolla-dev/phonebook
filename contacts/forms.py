@@ -18,6 +18,25 @@ class ContactForm(forms.ModelForm):
             "birth_date",
         ]
         
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.fields["birth_date"].widget.attrs.update(
+        {
+        "class": "form-control",
+        "type": "date",
+        }
+        
+        )
+        
+        for field in self.fields.values():
+            field.widget.attrs.update(
+                {
+                    "class": "form-control"
+                }
+            )
+        
+        
     def clean_birth_date(self):
         
         birth_date = self.cleaned_data.get("birth_date")

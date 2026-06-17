@@ -2,31 +2,113 @@
 
 {% block content %}
 
-<h2 class="mb-4">
+<div class="card">
 
-    ثبت / ویرایش مخاطب
+    <div class="card-header">
 
-</h2>
+        ثبت / ویرایش مخاطب
 
-<form method="post" enctype="multipart/form-data">
+    </div>
 
-    {% csrf_token %}
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+        
+            {% csrf_token %}
+        
+            {% if form.non_field_errors %}
+        
+            <div class="alert alert-danger">
+            
+                {{ form.non_field_errors }}
+            
+            </div>
+        
+        {% endif %}
+        
+            <div class="mb-3">
+            
+            <label class="form-label">
+            
+                نام و نام خانوادگی
+            
+            </label>
+        
+            {{ form.full_name }}
+        
+            {% for error in form.full_name.errors %}
+                <div class="text-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            
+        </div>
 
-    {{ form.as_p }}
 
-    <button class="btn btn-success">
+        <div class="mb-3">
+        
+            <label class="form-label">
+            
+                شماره همراه
+            
+            </label>
+        
+            {{ form.mobile }}
+        
+            {% for error in form.mobile.errors %}
+                <div class="text-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            
+        </div>
 
-        ذخیره
 
-    </button>
+        <div class="mb-3">
+        
+            <label class="form-label">
+            
+                تاریخ تولد
+            
+            </label>
+        
+            {{ form.birth_date }}
+        
+            {% for error in form.birth_date.errors %}
+                <div class="text-danger">
+                    {{ error }}
+                </div>
+            {% endfor %}
+            
+        </div>
 
-    <a href="/"
-       class="btn btn-secondary">
+        <div class="mb-3">
 
-        بازگشت
+            <label class="form-label">
 
-    </a>
+             تصویر
 
-</form>
+            </label>
 
+            {{ form.image }}
+
+        </div>
+
+            <button class="btn btn-success">
+            
+                ذخیره
+            
+            </button>
+        
+            <a href="/"
+               class="btn btn-secondary">
+        
+                بازگشت
+        
+            </a>
+        
+        </form>
+
+    </div>
+
+</div>
 {% endblock %}
