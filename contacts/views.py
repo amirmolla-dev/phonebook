@@ -19,6 +19,8 @@ class ContactListView(ListView):
     template_name= "contacts/contact_list.html"
     context_object_name= "contacts"
     
+    paginate_by = 5
+    
     def get_queryset(self):
         
         queryset = Contact.objects.all()
@@ -60,16 +62,22 @@ class ContactListView(ListView):
         return queryset.order_by("full_name")
     
     def get_context_data(self, **kwargs):
-        
-        context = super().get_context_data(
-            **kwargs
-        )
-        
+
+        context = super().get_context_data(**kwargs)
+
         context["search_form"] = SearchForm(
             self.request.GET
-        )
-        
+    )
+
+        querydict = self.request.GET.copy()
+
+        querydict.pop("page", None)
+
+        context["query_string"] = querydict.urlencode()
+
         return context
+    
+    
             
             
 
