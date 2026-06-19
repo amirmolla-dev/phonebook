@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}
+404 - صفحه پیدا نشد
+{% endblock %}
+
+{% block content %}
+
+<div class="text-center mt-5">
+
+    <h1 class="display-1 text-danger">
+
+        404
+
+    </h1>
+
+    <h3>
+
+       متاسفم صفحه ای که میخواستی پیدا نشد
+
+    </h3>
+
+    <p class="text-muted">
+
+       آدرسی که وارد کردی وجود نداره!
+
+    </p>
+
+    <br>
+    
+    <a
+        href="{% url 'contact-list' %}"
+        class="btn btn-primary">
+
+       بریم صفحه اصلی 
+
+    </a>
+
+</div>
+
+{% endblock %}
