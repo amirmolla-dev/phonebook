@@ -87,6 +87,54 @@
             </div>
 
             {% endif %}
+                
+                <div class="col-md-2">
+                
+            <label class="form-label">
+            
+                مرتب‌سازی
+            
+            </label>
+        
+            <select
+                name="sort_by"
+                class="form-select">
+        
+                <option value="">
+                    انتخاب کنید
+                </option>
+            
+                <option value="full_name"
+                {% if request.GET.sort_by == "full_name" %}
+                    selected
+                {% endif %}>
+                    نام (الفبا)
+                </option>
+            
+                <option value="birth_date"
+                {% if request.GET.sort_by == "birth_date" %}
+                    selected
+                {% endif %}>
+                    تاریخ تولد
+                </option>
+            
+                <option value="-created_at"
+                {% if request.GET.sort_by == "-created_at" %}
+                    selected
+                {% endif %}>
+                    جدیدترین
+                </option>
+            
+                <option value="created_at"
+                {% if request.GET.sort_by == "created_at" %}
+                    selected
+                {% endif %}>
+                    قدیمی‌ترین
+                </option>
+            
+            </select>
+        
+            </div>  
 
             <div class="col-md-2 d-flex align-items-end">
 

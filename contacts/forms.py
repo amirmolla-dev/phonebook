@@ -90,3 +90,14 @@ class SearchForm(forms.Form):
             )
             
         return cleaned_data
+    
+    SORT_CHOICES = [
+        ("full_name", "نام (الفبا)"),
+        ("birth_date", "تاریخ تولد"),
+        ("-created_at", "جدیدترین"),
+        ("created_at", "قدیمی ترین"),
+    ]
+    sort_by = forms.ChoiceField(
+        choices=SORT_CHOICES,
+        required=False
+    )

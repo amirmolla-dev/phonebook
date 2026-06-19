@@ -41,6 +41,10 @@ class ContactListView(ListView):
             end_date = form.cleaned_data.get(
                 "end_date"
             )
+            
+            sort_by = form.cleaned_data.get(
+                "sort_by"
+            )
         
             if query:
             
@@ -60,7 +64,13 @@ class ContactListView(ListView):
                 birth_date__lte=end_date
                 )
         
-        return queryset.order_by("full_name")
+            if sort_by:
+                queryset = queryset.order_by(sort_by)
+            else:
+                queryset = queryset.order_by("full_name")
+        
+            return queryset
+    
     
     def get_context_data(self, **kwargs):
 
