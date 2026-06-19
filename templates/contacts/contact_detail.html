@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}
+جزئیات مخاطب
+{% endblock %}
+
+{% block content %}
+
+<div class="card">
+
+    <div class="card-header">
+
+        اطلاعات مخاطب
+
+    </div>
+
+    <div class="card-body">
+
+        {% if contact.image %}
+
+            <img
+                src="{% url 'contact-image' contact.id %}"
+                width="150"
+                class="rounded mb-3"
+            >
+
+        {% endif %}
+
+        <p>
+
+            <strong>نام:</strong>
+
+            {{ contact.full_name }}
+
+        </p>
+
+        <p>
+
+            <strong>شماره همراه:</strong>
+
+            {{ contact.mobile }}
+
+        </p>
+
+        <p>
+
+            <strong>تاریخ تولد:</strong>
+
+            {{ contact.jalali_birth_date }}
+
+        </p>
+
+        <p>
+
+            <strong>تاریخ ثبت:</strong>
+
+            {{ contact.created_at }}
+
+        </p>
+
+        <p>
+
+            <strong>آخرین بروزرسانی:</strong>
+
+            {{ contact.updated_at }}
+
+        </p>
+
+        <a
+            href="{% url 'contact-edit' contact.id %}"
+            class="btn btn-warning">
+
+            ویرایش
+
+        </a>
+
+        <a
+            href="{% url 'contact-list' %}"
+            class="btn btn-secondary">
+
+            بازگشت
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

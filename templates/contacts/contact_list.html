@@ -149,7 +149,13 @@
 
         </td>
 
-        <td>{{ contact.full_name }}</td>
+        <td>
+            <a href="{% url 'contact-detail' contact.id %}">
+
+                {{ contact.full_name }}
+
+            </a>
+        </td>
 
         <td>{{ contact.mobile }}</td>
 

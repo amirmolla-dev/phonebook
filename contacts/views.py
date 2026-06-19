@@ -4,6 +4,7 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView,
+    DetailView,
 )
 
 from .models import Contact, ContactImage
@@ -150,6 +151,15 @@ class ContactDeleteView(DeleteView):
     
      
      
+     
+class ContactDetailView(DetailView):
+    
+    model = Contact
+    
+    template_name = "contacts/contact_detail.html"
+    
+    context_object_name = "contact"
+     
 def contact_image_view(request, pk):
     
     try:
@@ -163,3 +173,6 @@ def contact_image_view(request, pk):
         )
     except ContactImage.DoesNotExist:
         return HttpResponse(status=404)
+    
+    
+    

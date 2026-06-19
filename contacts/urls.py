@@ -6,6 +6,7 @@ from .views import (
     ContactUpdateView,
     ContactDeleteView,
     contact_image_view,
+    ContactDetailView,
 )
 
 urlpatterns = [
@@ -37,5 +38,11 @@ urlpatterns = [
         "image/<int:pk>/",
         contact_image_view,
         name="contact-image"
+    ),
+    
+    path(
+        "detail/<int:pk>/",
+        ContactDetailView.as_view(),
+        name="contact-detail"
     ),
 ]
