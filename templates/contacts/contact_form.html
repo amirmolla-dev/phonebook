@@ -80,7 +80,32 @@
             {% endfor %}
             
         </div>
+        
+        {% if object %}
 
+            {% if object.image %}
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                     تصویر فعلی
+
+                </label>
+
+                <br>
+
+                <img
+                    src="{% url 'contact-image' object.id %}"
+                    width="150"
+                    class="rounded border"
+                >
+
+            </div>
+
+            {% endif %}
+            
+        {% endif %}
         <div class="mb-3">
 
             <label class="form-label">
