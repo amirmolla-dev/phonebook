@@ -100,4 +100,5 @@ class SearchForm(forms.Form):
     sort_by = forms.ChoiceField(
         choices=SORT_CHOICES,
         required=False
-    )
+    ) 
+    
