@@ -39,6 +39,10 @@ DATABASES = {
     }
 }
 
+---
+
+## ⚙️ Setup
+
 git clone https://github.com/amirmolla-dev/phonebook.git
 cd phonebook
 
