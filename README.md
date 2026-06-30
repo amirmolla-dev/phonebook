@@ -43,12 +43,7 @@ DATABASES = {
 
 ## ⚙️ Setup & Installation
 
-### 1. Clone the repository
+### 1. Clone repository
 ```bash
 git clone https://github.com/amirmolla-dev/phonebook.git
 cd phonebook
-python -m venv venv
-venv\Scripts\activate   # Windows
-pip install django mysqlclient
-python manage.py migrate
-python manage.py runserver
