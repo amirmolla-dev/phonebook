@@ -21,6 +21,7 @@ A simple backend-focused Phonebook application built with Django that demonstrat
 - Django
 - MySQL
 - HTML / CSS
+- bootstrap
 
 ---
 
