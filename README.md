@@ -38,3 +38,14 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
+git clone https://github.com/amirmolla-dev/phonebook.git
+cd phonebook
+
+python -m venv venv
+venv\Scripts\activate   # Windows
+
+pip install django mysqlclient
+
+python manage.py migrate
+python manage.py runserver
